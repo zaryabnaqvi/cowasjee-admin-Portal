@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, Typography, Button, Input } from "@material-tailwind/react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeLowVision } from '@fortawesome/free-solid-svg-icons';
 import Logo from "../Components/Logo";
 
 const SignUpPage = () => {
@@ -62,6 +64,10 @@ const SignUpPage = () => {
             isValid = false;
         } else {
             setConfirmPasswordError('');
+        }
+
+        if (!name?.length || !email?.length || !password?.length || !confirmPassword?.length) {
+            isValid = false;
         }
 
         setIsFormValid(isValid);
@@ -138,7 +144,7 @@ const SignUpPage = () => {
                                     className="absolute top-1/2 right-3 transform -translate-y-1/2"
                                     onClick={handleTogglePasswordVisibility}
                                 >
-                                    {showPassword ? "Hide" : "Show"}
+                                    <FontAwesomeIcon icon={showPassword ? faEyeLowVision : faEye} />
                                 </button>
                             </div>
                         </div>
@@ -149,7 +155,7 @@ const SignUpPage = () => {
                                     placeholder="********"
                                     className=" !border-t-blue-gray-200 focus:!border-t-amber-500"
                                     color="amber"
-                                    type="password"
+                                    type={showConfirmPassword ? "text" : "password"}
                                     value={confirmPassword}
                                     onChange={handleConfirmPasswordChange}
                                     labelProps={{
@@ -161,7 +167,7 @@ const SignUpPage = () => {
                                     className="absolute top-1/2 right-3 transform -translate-y-1/2"
                                     onClick={handleToggleConfirmPasswordVisibility}
                                 >
-                                    {showConfirmPassword ? "Hide" : "Show"}
+                                    <FontAwesomeIcon icon={showConfirmPassword ? faEyeLowVision : faEye} />
                                 </button>
                             </div>
                             {confirmPasswordError && <p className="text-red-500 text-xs">{confirmPasswordError}</p>}
