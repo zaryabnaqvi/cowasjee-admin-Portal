@@ -14,8 +14,6 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/accounts/sign-in" element={<SignInPage />} />
                 <Route path="/accounts/sign-up" element={<SignUpPage />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
-
                 <Route path="*" element={<Error404Page />} />
             </Routes>
         </BrowserRouter>
