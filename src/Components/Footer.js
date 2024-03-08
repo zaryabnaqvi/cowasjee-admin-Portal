@@ -22,9 +22,9 @@ const Footer = () => {
 
     const SEOTags = (
         <div className="flex items-center gap-4 font-semibold">
-            <Tag>KE</Tag>
-            <Tag>Electricity</Tag>
-            <Tag>Surveillance</Tag>
+            <Tag>Education</Tag>
+            <Tag>Admin</Tag>
+            <Tag>Media Managment</Tag>
         </div>
     );
 
@@ -58,12 +58,10 @@ const Footer = () => {
             <div className="px-8 lg:px-48 py-12 bg-gray-900">
                 <div className="flex flex-col md:flex-row gap-8 items-start justify-between">
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-2xl font-semibold">EMSS</h2>
+                        <h2 className="text-2xl font-semibold">Cowas jee Admin Portal</h2>
                         <div className="flex flex-col gap-2 text-gray-400">
                             <p className="w-full lg:w-2/5 text-xs text-justify">
-                                Enhance energy management efficiency with our Electric Meter Surveillance System. Track
-                                real-time usage, optimize costs, and prioritize security for a smarter approach to
-                                energy consumption.
+                            The Cowasjee School, formerly known as NED School English Medium, opened under the managegement of NED University in 2009.
                             </p>
                         </div>
                     </div>
@@ -77,7 +75,7 @@ const Footer = () => {
                 <div>
                     <p>
                         Copyright <FontAwesomeIcon icon={faCopyright} /> 2024 &middot; All rights reserved | Made with{" "}
-                        <FontAwesomeIcon icon={faHeart} /> by <span className="font-bold">EMSS</span>.
+                        <FontAwesomeIcon icon={faHeart} /> by <span className="font-bold">Cowas jee Admin Portal</span>.
                     </p>
                 </div>
                 <div>{legalLinks}</div>
