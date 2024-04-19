@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Typography } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrash ,faPlus} from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
-
-
-
 const TABLE_HEAD = [
-  "Title",
+  "Name",
   "Description",
-  "Year",
+  "Image",
   "Manage"
 ];
 
-export function EventTable({deletedEvent}) {
-  const [Events, setEvents] = useState([]);
+export function FacultyTable({ deletedFaculty }) {
+  const [faculties, setFaculties] = useState([]);
 
   useEffect(() => {
     // Fetch data from the endpoint
-    fetch('http://127.0.0.1:8080/event')
+    fetch('http://127.0.0.1:8080/faculty')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -31,34 +26,25 @@ export function EventTable({deletedEvent}) {
         return response.json();
       })
       .then(data => {
-        // Sort Events by year
-        const sortedEvents = data.sort((a, b) => a.year - b.year);
         // Set the fetched data to the state
-        setEvents(sortedEvents);
+        setFaculties(data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, []);
 
-  const truncateDescription = (description) => {
-    if (description.length > 30) {
-      return description.substring(0, 30) + "...";
-    }
-    return description;
-  };
-
-  const deleteEvent=async(id)=>{
-    // const req = await fetch(`http://127.0.0.1:8080/delete-event/${id}`,{
-    //   method:"DELETE"
+  const deleteFaculty = async (id) => {
+    // const req = await fetch(`http://127.0.0.1:8080/delete-faculty/${id}`, {
+    //   method: "DELETE"
     // })
 
-    // if(req.ok){
-    //   const newArray = Events.filter((event, index) => event._id !== id);
-    //   setEvents(newArray); // Updates the state with the new array
+    // if (req.ok) {
+    //   const newArray = faculties.filter((faculty, index) => faculty._id !== id);
+    //   setFaculties(newArray); // Updates the state with the new array
     // }
-    toast.success('hello')
-    deletedEvent()
+    toast.success('Faculty deleted successfully');
+    deletedFaculty();
   }
 
   return (
@@ -83,15 +69,15 @@ export function EventTable({deletedEvent}) {
           </tr>
         </thead>
         <tbody>
-          {Events.map((Event) => (
-            <tr key={Event._id}>
+          {faculties.map((faculty) => (
+            <tr key={faculty._id}>
               <td className="p-4 border-b border-blue-gray-50">
                 <Typography
                   variant="small"
                   color="blue-gray"
                   className="font-normal"
                 >
-                  {Event.title}
+                  {faculty.name}
                 </Typography>
               </td>
               <td className="p-4 border-b border-blue-gray-50">
@@ -100,8 +86,11 @@ export function EventTable({deletedEvent}) {
                   color="blue-gray"
                   className="font-normal"
                 >
-                  {truncateDescription(Event.description)}
+                  {faculty.description}
                 </Typography>
+              </td>
+              <td className="p-4 border-b border-blue-gray-50">
+                <img src={faculty.imageUrl} alt={faculty.name} className="w-20 h-20" />
               </td>
               <td className="p-4 border-b border-blue-gray-50">
                 <Typography
@@ -109,18 +98,12 @@ export function EventTable({deletedEvent}) {
                   color="blue-gray"
                   className="font-normal"
                 >
-                  {Event.year}
-                </Typography>
-              </td>
-              <td className="p-4 border-b border-blue-gray-50">
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="font-normal"
-                >
-                <Link style={{backgroundColor:"rgb(245 158 11)",marginRight: "0.5rem",borderRadius:"2px"}} className='text-gray-900 p-3' to={`/update/Event/${Event._id}`}>  <FontAwesomeIcon  icon={faPencil} /></Link>
-                <span onClick={()=>deleteEvent(Event._id)} style={{marginRight: "0.5rem",borderRadius:"2px"}} className='text-white bg-red-700 p-3' > <FontAwesomeIcon   icon={faTrash} /></span>
-
+                  <Link style={{ backgroundColor: "rgb(245 158 11)", marginRight: "0.5rem", borderRadius: "2px" }} className='text-gray-900 p-3' to={`/update/Faculty/${faculty._id}`}>
+                    <FontAwesomeIcon icon={faPencil} />
+                  </Link>
+                  <span onClick={() => deleteFaculty(faculty._id)} style={{ marginRight: "0.5rem", borderRadius: "2px" }} className='text-white bg-red-700 p-3' >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </span>
                 </Typography>
               </td>
             </tr>
@@ -130,6 +113,3 @@ export function EventTable({deletedEvent}) {
     </Card>
   );
 }
-
-
-

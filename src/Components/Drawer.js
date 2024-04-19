@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faEnvelope ,faPlus, faCalendar} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faEnvelope ,faPlus, faCalendar, faUser} from "@fortawesome/free-solid-svg-icons";
 
 import {
   Drawer,
@@ -8,11 +8,15 @@ import {
   ListItem,
   ListItemPrefix,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function DrawerWithNavigation({ open, setOpen }) {
+  const navigate = useNavigate()
 
-
+  const handleLogout = ( ) =>{
+    localStorage.removeItem("token")
+    navigate("/sign-in")
+  }
 
   return (
     <>
@@ -87,6 +91,17 @@ export function DrawerWithNavigation({ open, setOpen }) {
             </ListItem>
             
           </Link>
+          <Link to="/create/faculty">
+            <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
+              <ListItemPrefix style={{display:'flex'}}>
+                
+              <FontAwesomeIcon style={{marginRight:"2px"}} icon={faUser} /> 
+              <FontAwesomeIcon icon={faPlus} />
+              </ListItemPrefix>
+              Post Faculties
+            </ListItem>
+            
+          </Link>
           <Link to="/create/event">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
               <ListItemPrefix style={{display:'flex'}}>
@@ -125,8 +140,17 @@ export function DrawerWithNavigation({ open, setOpen }) {
             </ListItem>
             
           </Link>
+          <Link to="/manage/Faculty">
+            <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
+              <ListItemPrefix>
+              <FontAwesomeIcon icon={faUser} />
+              </ListItemPrefix>
+              Manage Faculty 
+            </ListItem>
+            
+          </Link>
         </List>
-        <Button className="mt-3 ml-5" size="sm">
+        <Button onClick={handleLogout} className="mt-3 ml-5" size="sm">
           Logout
         </Button>
       </Drawer>

@@ -17,14 +17,14 @@ import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 import Footer from "../Components/Footer";
-import { EventTable } from "../Components/EventsTable";
+import { FacultyTable } from "../Components/FacultyTable";
 import PieChart from "../Components/PieChart";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ManageEvent = () => {
-  const [Events, setEvents] = useState([]);
+const ManageFaculty = () => {
+  const [Facultys, setFacultys] = useState([]);
   const d = new Date();
   const year = d.getFullYear();
   const month = (d.getMonth() + 1).toString().padStart(2, "0");
@@ -44,7 +44,7 @@ const ManageEvent = () => {
 
   useEffect(()=>{
 
-    fetch('http://127.0.0.1:8080/event')
+    fetch('http://127.0.0.1:8080/faculty')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -52,10 +52,10 @@ const ManageEvent = () => {
       return response.json();
     })
     .then(data => {
-      // Sort Events by year
-      const sortedEvents = data.sort((a, b) => a.year - b.year);
+      // Sort Facultys by year
+      const sortedFacultys = data.sort((a, b) => a.year - b.year);
       // Set the fetched data to the state
-      setEvents(sortedEvents);
+      setFacultys(sortedFacultys);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -64,7 +64,7 @@ const ManageEvent = () => {
   },[])
 
 
-  const deletedEvent =()=>{
+  const deletedFaculty =()=>{
 toast.success('Deleted Sucessfully')
   }
 
@@ -121,7 +121,7 @@ toast.success('Deleted Sucessfully')
             variant="h4"
             className="self-center sm:self-start font-semibold text-[#323226] "
           >
-            All the Posted Events
+            All the Posted Faculty Information
           </Typography>
           <div className="flex flex-col lg:flex-row-reverse mt-5 md:mt-0 self-center sm:self-end">
             <div>
@@ -146,14 +146,12 @@ toast.success('Deleted Sucessfully')
           </div>
         </div>
         <div>
-          <EventTable  deletedEvent={deletedEvent}/>
+          <FacultyTable  deletedFaculty={deletedFaculty}/>
         </div>
         <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
-          <div className="w-full md:w-6/12">
-          {!(Events.length===0) &&  <PieChart data={Events} details="Events Posted in Years"/>
- }         </div>
-          <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-6/12">
-            <Card>
+        
+          <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-full">
+            <Card className="my-5">
               <CardBody>
                 <Typography
                   variant="h5"
@@ -170,7 +168,7 @@ toast.success('Deleted Sucessfully')
                 <Button>Read More</Button>
               </CardFooter>
             </Card>
-            <Card className="mt-5 md:mt-0">
+            <Card className="my-5 md:mt-0">
               <CardBody>
                 <Typography
                   variant="h5"
@@ -195,4 +193,4 @@ toast.success('Deleted Sucessfully')
   );
 };
 
-export default ManageEvent;
+export default ManageFaculty;

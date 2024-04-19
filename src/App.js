@@ -19,6 +19,9 @@ import UpdateAchievement from "./Pages/UpdateAchievement";
 import CreateEvent from "./Pages/CreateEvents";
 import ManageEvent from "./Pages/ManageEvents";
 import UpdateEvent from "./Pages/UpdateEvent";
+import CreateFaculty from "./Pages/CreateFaculty";
+import ManageFaculty from "./Pages/ManageFaculty";
+import UpdateFaculty from "./Pages/UpdateFaculty";
 
 function App() {
   return (
@@ -31,6 +34,8 @@ function App() {
         <Route path="/manage/Achievement" element={<ManageAchievement/>} />
         <Route path="/manage/Notification" element={<ManageNotification/>} />
         <Route path="/manage/Events" element={<ManageEvent/>} />
+        <Route path="/manage/Faculty" element={<ManageFaculty/>} />
+
 
 
 
@@ -38,10 +43,14 @@ function App() {
         <Route path="/create/Achievement" element={<CreateAchievement />} />
         <Route path="/create/Notification" element={<CreateNotification />} />
         <Route path="/create/event" element={<CreateEvent />} />
+        <Route path="/create/faculty" element={<CreateFaculty />} />
+
 
         <Route path="/update/Notification/:id" element={<UpdateNotification />} />
         <Route path="/update/Achievement/:id" element={<UpdateAchievement />} />
         <Route path="/update/Event/:id" element={<UpdateEvent />} />
+        <Route path="/update/Faculty/:id" element={<UpdateFaculty />} />
+
 
 
 
