@@ -41,7 +41,7 @@ const CreateNotificationForm = () => {
     formDataToSend.append('uploadedDocument', formData.uploadedDocument);
 
     try {
-      const response = await fetch('http://127.0.0.1:8080/new-notification', {
+      const response = await fetch('https://nedmob1.neduet.edu.pk:8080/new-notification', {
         method: 'POST',
         headers: {
           accept: "multipart/form-data"

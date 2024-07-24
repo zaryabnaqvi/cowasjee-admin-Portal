@@ -44,7 +44,7 @@ const ManageEvent = () => {
 
   useEffect(()=>{
 
-    fetch('http://127.0.0.1:8080/event')
+    fetch('https://nedmob1.neduet.edu.pk:8080/event')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -138,10 +138,7 @@ toast.success('Deleted Sucessfully')
               />
             </div>
             <div className="self-center sm:self-end md:w-auto">
-              <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
-                <FontAwesomeIcon className="mr-2" icon={faSearch} />
-                Search
-              </Button>
+            
             </div>
           </div>
         </div>

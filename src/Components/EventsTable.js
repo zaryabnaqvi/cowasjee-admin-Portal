@@ -23,7 +23,7 @@ export function EventTable({deletedEvent}) {
 
   useEffect(() => {
     // Fetch data from the endpoint
-    fetch('http://127.0.0.1:8080/event')
+    fetch('https://nedmob1.neduet.edu.pk:8080/event')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -49,14 +49,14 @@ export function EventTable({deletedEvent}) {
   };
 
   const deleteEvent=async(id)=>{
-    // const req = await fetch(`http://127.0.0.1:8080/delete-event/${id}`,{
-    //   method:"DELETE"
-    // })
+    const req = await fetch(`https://nedmob1.neduet.edu.pk:8080/delete-event/${id}`,{
+      method:"DELETE"
+    })
 
-    // if(req.ok){
-    //   const newArray = Events.filter((event, index) => event._id !== id);
-    //   setEvents(newArray); // Updates the state with the new array
-    // }
+    if(req.ok){
+      const newArray = Events.filter((event, index) => event._id !== id);
+      setEvents(newArray); // Updates the state with the new array
+    }
     toast.success('hello')
     deletedEvent()
   }

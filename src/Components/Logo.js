@@ -16,7 +16,7 @@ const Logo = ({ variant = "default", filled = true ,color}) => {
             )}
             {(variant === "default" || variant === "text") && (
                 <Typography variant="h6" className={`font-semibold ${(color)?color:"text-[#323226]"} select-none`}>
-                    The Cowas jee Admin Portal
+                    The Cowasjee Admin Portal
                 </Typography>
             )}
         </a>

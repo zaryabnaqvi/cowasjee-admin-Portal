@@ -23,7 +23,7 @@ year:'',
 
   const getFormData = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8080/event/${id}`, {});
+      const response = await fetch(`https://nedmob1.neduet.edu.pk:8080/event/${id}`, {});
   
       if (response.ok) {
         // Show toast Event on success
@@ -72,7 +72,7 @@ year:'',
     formDataToSend.append('imageUrl', formData.imageUrl);
     }
     try {
-      const response = await fetch('http://127.0.0.1:8080/update-event', {
+      const response = await fetch('https://nedmob1.neduet.edu.pk:8080/update-event', {
         method: 'PATCH',
         headers: {
           accept: "multipart/form-data"

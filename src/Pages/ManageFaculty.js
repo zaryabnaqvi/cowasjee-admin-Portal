@@ -44,7 +44,7 @@ const ManageFaculty = () => {
 
   useEffect(()=>{
 
-    fetch('http://127.0.0.1:8080/faculty')
+    fetch('https://nedmob1.neduet.edu.pk:8080/faculty')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -151,40 +151,8 @@ toast.success('Deleted Sucessfully')
         <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
         
           <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-full">
-            <Card className="my-5">
-              <CardBody>
-                <Typography
-                  variant="h5"
-                  className="mb-2 font-semibold text-[#323226]"
-                >
-                  Instruction
-                </Typography>
-                <Typography>
-                  The place is close to Barceloneta Beach and bus stop just 2
-                  min by walk
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-0">
-                <Button>Read More</Button>
-              </CardFooter>
-            </Card>
-            <Card className="my-5 md:mt-0">
-              <CardBody>
-                <Typography
-                  variant="h5"
-                  className="mb-2 font-semibold text-[#323226]"
-                >
-                  Guidelines for Uploads
-                </Typography>
-                <Typography>
-                  The place is close to Barceloneta Beach and bus stop just 2
-                  min by walk
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-0">
-                <Button>Read More</Button>
-              </CardFooter>
-            </Card>
+          
+           
           </div>
         </div>
         <Footer />

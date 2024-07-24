@@ -43,7 +43,7 @@ const ManageNotification = () => {
 };
     useEffect(() => {
         // Fetch data from the endpoint
-        fetch('http://127.0.0.1:8080/notifications')
+        fetch('https://nedmob1.neduet.edu.pk:8080/notifications')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

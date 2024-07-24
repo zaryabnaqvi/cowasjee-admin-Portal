@@ -28,7 +28,7 @@ const SignInPage = () => {
         
         try {
             // Perform login request
-            const response = await fetch('http://localhost:8080/login', {
+            const response = await fetch('https://nedmob1.neduet.edu.pk:8080/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

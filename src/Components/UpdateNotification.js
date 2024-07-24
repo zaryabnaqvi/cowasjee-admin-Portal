@@ -24,7 +24,7 @@ const UpdateNotificationForm = ({id}) => {
 
   const getFormData = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8080/notification/${id}`, {});
+      const response = await fetch(`https://nedmob1.neduet.edu.pk:8080/notification/${id}`, {});
   
       if (response.ok) {
         // Show toast notification on success
@@ -80,7 +80,7 @@ const UpdateNotificationForm = ({id}) => {
     formDataToSend.append('uploadedDocument', formData.uploadedDocument);
     }
     try {
-      const response = await fetch('http://127.0.0.1:8080/update-notification', {
+      const response = await fetch('https://nedmob1.neduet.edu.pk:8080/update-notification', {
         method: 'PATCH',
         headers: {
           accept: "multipart/form-data"

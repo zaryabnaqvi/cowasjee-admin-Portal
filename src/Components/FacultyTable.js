@@ -18,7 +18,7 @@ export function FacultyTable({ deletedFaculty }) {
 
   useEffect(() => {
     // Fetch data from the endpoint
-    fetch('http://127.0.0.1:8080/faculty')
+    fetch('https://nedmob1.neduet.edu.pk:8080/faculty')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -35,14 +35,14 @@ export function FacultyTable({ deletedFaculty }) {
   }, []);
 
   const deleteFaculty = async (id) => {
-    // const req = await fetch(`http://127.0.0.1:8080/delete-faculty/${id}`, {
-    //   method: "DELETE"
-    // })
+    const req = await fetch(`https://nedmob1.neduet.edu.pk:8080/delete-faculty/${id}`, {
+      method: "DELETE"
+    })
 
-    // if (req.ok) {
-    //   const newArray = faculties.filter((faculty, index) => faculty._id !== id);
-    //   setFaculties(newArray); // Updates the state with the new array
-    // }
+    if (req.ok) {
+      const newArray = faculties.filter((faculty, index) => faculty._id !== id);
+      setFaculties(newArray); // Updates the state with the new array
+    }
     toast.success('Faculty deleted successfully');
     deletedFaculty();
   }

@@ -41,7 +41,7 @@ const ManageAchievement = () => {
 
   useEffect(()=>{
 
-    fetch('http://127.0.0.1:8080/achievement')
+    fetch('https://nedmob1.neduet.edu.pk:8080/achievement')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

@@ -3,6 +3,8 @@ import { Card, Typography } from "@material-tailwind/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TABLE_HEAD = [
     "Title",
@@ -16,8 +18,7 @@ export function NotificationTable() {
     const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
-        // Fetch data from the endpoint
-        fetch('http://127.0.0.1:8080/notifications')
+        fetch('https://nedmob1.neduet.edu.pk:8080/notifications')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -25,13 +26,11 @@ export function NotificationTable() {
                 return response.json();
             })
             .then(data => {
-                // Sort notifications by issue date
                 const sortedNotifications = data.sort((a, b) => {
                     const dateA = new Date(a.issueDate.year, getMonthIndex(a.issueDate.month), a.issueDate.day);
                     const dateB = new Date(b.issueDate.year, getMonthIndex(b.issueDate.month), b.issueDate.day);
                     return dateB - dateA;
                 });
-                // Set the fetched data to the state
                 setNotifications(sortedNotifications);
             })
             .catch(error => {
@@ -51,11 +50,23 @@ export function NotificationTable() {
         return description;
     };
 
-    const handleDelete = async(id)=>{
-        
-    }
+    const deleteNotification = async (id) => {
+        const req = await fetch(`https://nedmob1.neduet.edu.pk:8080/delete-notification/${id}`, {
+            method: "DELETE"
+        });
+
+        if (req.ok) {
+            const newArray = notifications.filter(notification => notification._id !== id);
+            setNotifications(newArray);
+            toast.success('Notification deleted successfully');
+        } else {
+            toast.error('Failed to delete notification');
+        }
+    };
+
     return (
         <Card className="mt-5 w-4/5 rounded-none overflow-x-scroll mx-auto">
+            <ToastContainer />
             <table className="w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>
@@ -122,8 +133,20 @@ export function NotificationTable() {
                                     color="blue-gray"
                                     className="font-normal"
                                 >
-                                  <Link style={{backgroundColor:"rgb(245 158 11)",marginRight: "0.5rem",borderRadius:"2px"}} className='text-gray-900 p-3' to={`/update/Notification/${notification._id}`}>  <FontAwesomeIcon  icon={faPencil} /></Link>
-                                  <span style={{marginRight: "0.5rem",borderRadius:"2px"}} className='text-white bg-red-700 p-3' > <FontAwesomeIcon   icon={faTrash} /></span>
+                                    <Link
+                                        style={{ backgroundColor: "rgb(245 158 11)", marginRight: "0.5rem", borderRadius: "2px" }}
+                                        className='text-gray-900 p-3'
+                                        to={`/update/Notification/${notification._id}`}
+                                    >
+                                        <FontAwesomeIcon icon={faPencil} />
+                                    </Link>
+                                    <span
+                                        onClick={() => deleteNotification(notification._id)}
+                                        style={{ marginRight: "0.5rem", borderRadius: "2px" }}
+                                        className='text-white bg-red-700 p-3'
+                                    >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </span>
                                 </Typography>
                             </td>
                         </tr>

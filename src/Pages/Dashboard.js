@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/analytics");
+        const response = await fetch("https://nedmob1.neduet.edu.pk:8080/analytics");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -114,9 +114,11 @@ const Dashboard = () => {
           </div>
 
           {/* Footer */}
-          <Footer />
+         
         </div>
+       
       </main>
+      <Footer />
     </>
   );
 };
