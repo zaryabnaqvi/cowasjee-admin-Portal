@@ -27,7 +27,7 @@ export function DrawerWithNavigation({ open, setOpen }) {
         open={open}
         onClose={() => setOpen(open)}
       >
-        <List className="mt-2 mx-0 !min-w-full">
+        <List className="mt-1 mx-0 !min-w-full">
           <Link to="/dashboard">
             <ListItem
               ripple={false}
@@ -51,26 +51,16 @@ export function DrawerWithNavigation({ open, setOpen }) {
             </ListItem>
           </Link>
           <hr className="w-full" />
-          {/* <Link to="/predictions">
+          <Link to="/create/event">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
-              <ListItemPrefix>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-5 w-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <ListItemPrefix style={{display:'flex'}}>
+                
+              <FontAwesomeIcon style={{marginRight:"2px"}} icon={faCalendar} /> 
+              <FontAwesomeIcon icon={faPlus} />
               </ListItemPrefix>
-              Prediction
+              Post Event 
             </ListItem>
-            
-          </Link> */}
+          </Link>
           <Link to="/create/Achievement">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
               <ListItemPrefix style={{display:'flex'}}>
@@ -98,29 +88,18 @@ export function DrawerWithNavigation({ open, setOpen }) {
               <FontAwesomeIcon style={{marginRight:"2px"}} icon={faUser} /> 
               <FontAwesomeIcon icon={faPlus} />
               </ListItemPrefix>
-              Post Faculties
+              Post Faculty
             </ListItem>
             
           </Link>
-          <Link to="/create/event">
-            <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
-              <ListItemPrefix style={{display:'flex'}}>
-                
-              <FontAwesomeIcon style={{marginRight:"2px"}} icon={faCalendar} /> 
-              <FontAwesomeIcon icon={faPlus} />
-              </ListItemPrefix>
-              Post Event 
-            </ListItem>
-            
-          </Link>
-          <Link to="/manage/Notification">
+          <hr className="w-full" />
+          <Link to="/manage/Events">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
               <ListItemPrefix>
-              <FontAwesomeIcon icon={faEnvelope} />
+              <FontAwesomeIcon icon={faCalendar} />
               </ListItemPrefix>
-              Manage Notification 
+              Manage Events 
             </ListItem>
-            
           </Link>
           <Link to="/manage/Achievement">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
@@ -131,12 +110,12 @@ export function DrawerWithNavigation({ open, setOpen }) {
             </ListItem>
             
           </Link>
-          <Link to="/manage/Events">
+          <Link to="/manage/Notification">
             <ListItem className="hover:!bg-transparent focus:!bg-transparent hover:translate-x-1">
               <ListItemPrefix>
-              <FontAwesomeIcon icon={faCalendar} />
+              <FontAwesomeIcon icon={faEnvelope} />
               </ListItemPrefix>
-              Manage Events 
+              Manage Notifications 
             </ListItem>
             
           </Link>
@@ -145,12 +124,11 @@ export function DrawerWithNavigation({ open, setOpen }) {
               <ListItemPrefix>
               <FontAwesomeIcon icon={faUser} />
               </ListItemPrefix>
-              Manage Faculty 
+              Manage Faculty
             </ListItem>
-            
           </Link>
         </List>
-        <Button onClick={handleLogout} className="mt-3 ml-5" size="sm">
+        <Button onClick={handleLogout} className="mt-2 ml-5" size="sm">
           Logout
         </Button>
       </Drawer>

@@ -13,7 +13,7 @@ import {
 import Logo from "../Components/Logo";
 import { DrawerWithNavigation } from "../Components/Drawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 import Footer from "../Components/Footer";
@@ -22,6 +22,7 @@ import PieChart from "../Components/PieChart";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const ManageEvent = () => {
   const [Events, setEvents] = useState([]);
@@ -42,30 +43,30 @@ const ManageEvent = () => {
     });
   }, [scrolled]);
 
-  useEffect(()=>{
+  useEffect(() => {
 
     fetch('https://nedmob1.neduet.edu.pk:8080/event')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Sort Events by year
-      const sortedEvents = data.sort((a, b) => a.year - b.year);
-      // Set the fetched data to the state
-      setEvents(sortedEvents);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-    
-  },[])
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Sort Events by year
+        const sortedEvents = data.sort((a, b) => a.year - b.year);
+        // Set the fetched data to the state
+        setEvents(sortedEvents);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+  }, [])
 
 
-  const deletedEvent =()=>{
-toast.success('Deleted Sucessfully')
+  const deletedEvent = () => {
+    toast.success('Deleted Sucessfully')
   }
 
   return (
@@ -111,9 +112,9 @@ toast.success('Deleted Sucessfully')
           </div> */}
         </div>
       </Navbar>
-      
+
       <DrawerWithNavigation open={open} setOpen={setOpen} />
-      
+
 
       <main onClick={() => setOpen(false)}>
         <div className=" flex flex-col lg:flex-row mt-10 w-4/5 mx-auto justify-between items-center">
@@ -124,7 +125,7 @@ toast.success('Deleted Sucessfully')
             All the Posted Events
           </Typography>
           <div className="flex flex-col lg:flex-row-reverse mt-5 md:mt-0 self-center sm:self-end">
-            <div>
+            {/* <div>
               <Input
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -136,20 +137,27 @@ toast.success('Deleted Sucessfully')
                     "before:content-none after:content-none border-none",
                 }}
               />
-            </div>
-            <div className="self-center sm:self-end md:w-auto">
-            
-            </div>
+            </div> */}
+            <Link to="/create/event">
+              <div className="self-center sm:self-end md:w-auto">
+                <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
+                  <FontAwesomeIcon className="mr-2" icon={faAdd} />
+                  New Post
+                </Button>
+              </div>
+            </Link>
           </div>
         </div>
         <div>
-          <EventTable  deletedEvent={deletedEvent}/>
+          <EventTable deletedEvent={deletedEvent} />
         </div>
-        <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
+        {/* <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
           <div className="w-full md:w-6/12">
-          {!(Events.length===0) &&  <PieChart data={Events} details="Events Posted in Years"/>
- }         </div>
-          <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-6/12">
+            {
+              !(Events.length === 0) && <PieChart data={Events} details="Events Posted in Years" />
+            }         
+          </div> */}
+          {/* <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-6/12">
             <Card>
               <CardBody>
                 <Typography
@@ -184,6 +192,13 @@ toast.success('Deleted Sucessfully')
                 <Button>Read More</Button>
               </CardFooter>
             </Card>
+          </div> */}
+        {/* </div> */}
+        <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
+          <div className="w-full w-12/12">
+            {
+              !(Events.length === 0) && <PieChart data={Events} details="Events Posted in Years" />
+            } 
           </div>
         </div>
         <Footer />

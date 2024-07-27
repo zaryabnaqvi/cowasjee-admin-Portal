@@ -13,7 +13,7 @@ import {
 import Logo from "../Components/Logo";
 import { DrawerWithNavigation } from "../Components/Drawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 import Footer from "../Components/Footer";
@@ -22,6 +22,7 @@ import PieChart from "../Components/PieChart";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const ManageFaculty = () => {
   const [Facultys, setFacultys] = useState([]);
@@ -124,7 +125,7 @@ toast.success('Deleted Sucessfully')
             All the Posted Faculty Information
           </Typography>
           <div className="flex flex-col lg:flex-row-reverse mt-5 md:mt-0 self-center sm:self-end">
-            <div>
+            {/* <div>
               <Input
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -136,13 +137,15 @@ toast.success('Deleted Sucessfully')
                     "before:content-none after:content-none border-none",
                 }}
               />
-            </div>
-            <div className="self-center sm:self-end md:w-auto">
-              <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
-                <FontAwesomeIcon className="mr-2" icon={faSearch} />
-                Search
-              </Button>
-            </div>
+            </div> */}
+            <Link to="/create/faculty">
+              <div className="self-center sm:self-end md:w-auto">
+                <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
+                  <FontAwesomeIcon className="mr-2" icon={faAdd} />
+                  New Post
+                </Button>
+              </div>
+            </Link>
           </div>
         </div>
         <div>

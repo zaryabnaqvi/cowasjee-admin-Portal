@@ -13,12 +13,13 @@ import {
 import Logo from "../Components/Logo";
 import { DrawerWithNavigation } from "../Components/Drawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faAdd } from "@fortawesome/free-solid-svg-icons";
 import { DefaultTable } from "../Components/Table";
 import Example from "../Components/LineChart";
 import Footer from "../Components/Footer";
 import { AchievementTable } from "../Components/AchievementTable";
 import PieChart from "../Components/PieChart";
+import { Link, useNavigate } from "react-router-dom";
 
 const ManageAchievement = () => {
   const [achievements, setAchievements] = useState([]);
@@ -39,26 +40,26 @@ const ManageAchievement = () => {
     });
   }, [scrolled]);
 
-  useEffect(()=>{
+  useEffect(() => {
 
     fetch('https://nedmob1.neduet.edu.pk:8080/achievement')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Sort achievements by year
-      const sortedAchievements = data.sort((a, b) => a.year - b.year);
-      // Set the fetched data to the state
-      setAchievements(sortedAchievements);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
-    
-  },[])
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Sort achievements by year
+        const sortedAchievements = data.sort((a, b) => a.year - b.year);
+        // Set the fetched data to the state
+        setAchievements(sortedAchievements);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+  }, [])
 
   return (
     <>
@@ -103,7 +104,7 @@ const ManageAchievement = () => {
           </div> */}
         </div>
       </Navbar>
-      
+
       <DrawerWithNavigation open={open} setOpen={setOpen} />
 
 
@@ -116,7 +117,7 @@ const ManageAchievement = () => {
             All the Posted Achievements
           </Typography>
           <div className="flex flex-col lg:flex-row-reverse mt-5 md:mt-0 self-center sm:self-end">
-            <div>
+            {/* <div>
               <Input
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -128,23 +129,27 @@ const ManageAchievement = () => {
                     "before:content-none after:content-none border-none",
                 }}
               />
-            </div>
-            <div className="self-center sm:self-end md:w-auto">
-              <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
-                <FontAwesomeIcon className="mr-2" icon={faSearch} />
-                Search
-              </Button>
-            </div>
+            </div> */}
+            <Link to="/create/Achievement">
+              <div className="self-center sm:self-end md:w-auto">
+                <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
+                  <FontAwesomeIcon className="mr-2" icon={faAdd} />
+                  New Post
+                </Button>
+              </div>
+            </Link>
           </div>
         </div>
         <div>
           <AchievementTable />
         </div>
-        <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
+        {/* <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
           <div className="w-full md:w-6/12">
-          {!(achievements.length===0) &&  <PieChart data={achievements} details="Achievements Posted in Years"/>
- }         </div>
-          <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-6/12">
+            {
+              !(achievements.length === 0) && <PieChart data={achievements} details="Achievements Posted in Years" />
+            }         
+          </div> */}
+        {/* <div className="mt-5 md:mt-0 md:ml-5 flex justify-between flex-col w-full md:w-6/12">
             <Card>
               <CardBody>
                 <Typography
@@ -179,6 +184,13 @@ const ManageAchievement = () => {
                 <Button>Read More</Button>
               </CardFooter>
             </Card>
+          </div> */}
+        {/* </div> */}
+        <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
+          <div className="w-full w-12/12">
+            {
+              !(achievements.length === 0) && <PieChart data={achievements} details="Achievements Posted in Years" />
+            }
           </div>
         </div>
         <Footer />

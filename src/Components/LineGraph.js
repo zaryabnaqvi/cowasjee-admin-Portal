@@ -42,11 +42,11 @@ console.log(chartData)
       type: 'datetime'
     },
     title: {
-      text: 'Event Occurrences Over Time'
+      text: ''
     },
     yaxis: {
       title: {
-        text: 'Number of Events'
+        text: 'Number of Notifications'
       }
     }
   };

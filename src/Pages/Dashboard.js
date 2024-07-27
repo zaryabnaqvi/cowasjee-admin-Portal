@@ -99,11 +99,10 @@ const Dashboard = () => {
           <section className="text-gray-700 body-font">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-wrap -m-4 text-center">
-                <StatCard icon={faCalendar} count={counts.Event} label="Events" />
-                <StatCard icon={faStar} count={counts.Achievement} label="Achievements" />
-                <StatCard icon={faEnvelope} count={counts.Notification} label="Notifications" />
-                <StatCard icon={faGoogleScholar} count={counts.Faculty} label="Faculty Member" />
-
+                <StatCard icon={faCalendar} count={counts.Event} label="Events" path="/manage/Events" />
+                <StatCard icon={faStar} count={counts.Achievement} label="Achievements" path="/manage/Achievement" />
+                <StatCard icon={faEnvelope} count={counts.Notification} label="Notifications" path="/manage/Notification" />
+                <StatCard icon={faGoogleScholar} count={counts.Faculty} label="Faculty Member" path="/manage/Faculty" />
               </div>
             </div>
           </section>
@@ -123,14 +122,31 @@ const Dashboard = () => {
   );
 };
 
-const StatCard = ({ icon, count, label }) => (
-  <div className="p-4 md:w-1/2 sm:w-1/2 w-full">
-    <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
-      <FontAwesomeIcon icon={icon} className="text-red-900 w-12 h-12 mb-3 inline-block" />
-      <h2 className="title-font font-medium text-3xl text-gray-900">{count}</h2>
-      <p className="leading-relaxed">{label}</p>
+// const StatCard = ({ icon, count, label }) => (
+//   <div className="p-4 md:w-1/2 sm:w-1/2 w-full">
+//     <div className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110">
+//       <FontAwesomeIcon icon={icon} className="text-red-900 w-12 h-12 mb-3 inline-block" />
+//       <h2 className="title-font font-medium text-3xl text-gray-900">{count}</h2>
+//       <p className="leading-relaxed">{label}</p>
+//     </div>
+//   </div>
+// );
+
+const StatCard = ({ icon, count, label, path }) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="p-4 md:w-1/2 sm:w-1/2 w-full">
+      <div
+        className="border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-110 cursor-pointer"
+        onClick={() => navigate(path)}
+      >
+        <FontAwesomeIcon icon={icon} className="text-red-900 w-12 h-12 mb-3 inline-block" />
+        <h2 className="title-font font-medium text-3xl text-gray-900">{count}</h2>
+        <p className="leading-relaxed">{label}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Dashboard;

@@ -13,12 +13,14 @@ import {
 import Logo from "../Components/Logo";
 import { DrawerWithNavigation } from "../Components/Drawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { DefaultTable } from "../Components/Table";
 import Example from "../Components/LineChart";
 import Footer from "../Components/Footer";
 import { NotificationTable } from "../Components/NotificationTable";
 import LineGraph from "../Components/LineGraph";
+import { Link } from "react-router-dom";
+import PieChart from "../Components/PieChart";
 
 const ManageNotification = () => {
   const d = new Date();
@@ -121,7 +123,7 @@ const ManageNotification = () => {
             All Posted Notifications
           </Typography>
           <div className="flex flex-col lg:flex-row-reverse mt-5 md:mt-0 self-center sm:self-end">
-            <div>
+            {/* <div>
               <Input
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -133,22 +135,24 @@ const ManageNotification = () => {
                     "before:content-none after:content-none border-none",
                 }}
               />
-            </div>
-            <div className="self-center sm:self-end md:w-auto">
-              <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
-                <FontAwesomeIcon className="mr-2" icon={faSearch} />
-                Search
-              </Button>
-            </div>
+            </div> */}
+            <Link to="/create/Notification">
+              <div className="self-center sm:self-end md:w-auto">
+                <Button className="mr-0 md:mr-3 mt-3 lg:mt-0 ">
+                  <FontAwesomeIcon className="mr-2" icon={faAdd} />
+                  New Post
+                </Button>
+              </div>
+            </Link>
           </div>
         </div>
         <div>
           <NotificationTable />
         </div>
         <div className="graphs_sec mb-10 flex flex-col md:flex-row mt-10 w-4/5 mx-auto">
-          <div className="w-full w-12/12">
+          {/* <div className="w-full w-12/12">
             <LineGraph data={notifications} details="Notifications over time" />
-          </div>
+          </div> */}
          
         </div>
         <Footer />

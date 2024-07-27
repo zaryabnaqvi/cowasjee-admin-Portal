@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faGithub, faYoutube, faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { faCopyright, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
@@ -23,18 +23,21 @@ const Footer = () => {
     const SEOTags = (
         <div className="flex items-center gap-4 font-semibold">
             <Tag>Education</Tag>
-            <Tag>Admin</Tag>
-            <Tag>Media Managment</Tag>
+            <Tag>Administration</Tag>
+            <Tag>Managment</Tag>
         </div>
     );
 
     const socialMediaButtons = (
         <div className="flex items-center gap-6 font-semibold">
-            <a href="." className="text-gray-400 hover:text-white">
+            <a href="https://www.facebook.com/tcs.ned" className="text-gray-400 hover:text-white">
                 <FontAwesomeIcon icon={faFacebook} />
             </a>
-            <a href="." className="text-gray-400 hover:text-white">
-                <FontAwesomeIcon icon={faGithub} />
+            <a href="https://www.youtube.com/@TheCowasjeeSchool" className="text-gray-400 hover:text-white">
+                <FontAwesomeIcon icon={faYoutube} />
+            </a>
+            <a href="https://www.tiktok.com/@the.cowasjee.school" className="text-gray-400 hover:text-white">
+                <FontAwesomeIcon icon={faTiktok} />
             </a>
         </div>
     );
@@ -58,7 +61,7 @@ const Footer = () => {
             <div className="px-8 lg:px-48 py-12 bg-gray-900">
                 <div className="flex flex-col md:flex-row gap-8 items-start justify-between">
                     <div className="flex flex-col gap-4">
-                        <h2 className="text-2xl font-semibold">Cowas jee Admin Portal</h2>
+                        <h2 className="text-2xl font-semibold">Cowasjee Admin Portal</h2>
                         <div className="flex flex-col gap-2 text-gray-400">
                             <p className="w-full lg:w-2/5 text-xs text-justify">
                             The Cowasjee School, formerly known as NED School English Medium, opened under the managegement of NED University in 2009.
@@ -75,10 +78,10 @@ const Footer = () => {
                 <div>
                     <p>
                         Copyright <FontAwesomeIcon icon={faCopyright} /> 2024 &middot; All rights reserved | Made with{" "}
-                        <FontAwesomeIcon icon={faHeart} /> by <span className="font-bold">Cowas jee Admin Portal</span>.
+                        <FontAwesomeIcon icon={faHeart} /> by <span className="font-bold">Cowasjee School</span>.
                     </p>
                 </div>
-                <div>{legalLinks}</div>
+                {/* <div>{legalLinks}</div> */}
             </div>
         </footer>
     );
