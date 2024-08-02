@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const TABLE_HEAD = [
   "Name",
   "Description",
-  "Image",
+  "CV",
+  "Designation",
   "Manage"
 ];
 
@@ -90,7 +91,17 @@ export function FacultyTable({ deletedFaculty }) {
                 </Typography>
               </td>
               <td className="p-4 border-b border-blue-gray-50">
-                <img src={faculty.imageUrl} alt={faculty.name} className="w-20 h-20" />
+                <a target='_blank' href={faculty.imageUrl} className=' underline text-blue-800' alt={faculty.name}  >View Document</a>
+              </td>
+
+              <td className="p-4 border-b border-blue-gray-50">
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="font-normal"
+                >
+                  {faculty.designation}
+                </Typography>
               </td>
               <td className="p-4 border-b border-blue-gray-50">
                 <Typography

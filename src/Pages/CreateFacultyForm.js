@@ -7,11 +7,13 @@ const CreateFacultyForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    image: null
+    image: null,
+    teachingStaff: '', // New field for Teaching Staff
+    designation: ''    // New field for Designation
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, files, type } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: files ? files[0] : value
@@ -24,6 +26,8 @@ const CreateFacultyForm = () => {
     formDataToSend.append('name', formData.name);
     formDataToSend.append('description', formData.description);
     formDataToSend.append('imageUrl', formData.image);
+    formDataToSend.append('teachingStaff', formData.teachingStaff); // Append new field
+    formDataToSend.append('designation', formData.designation); // Append new field
 
     try {
       const response = await fetch('https://nedmob1.neduet.edu.pk:8080/new-faculty', {
@@ -39,7 +43,9 @@ const CreateFacultyForm = () => {
         setFormData({
           name: '',
           description: '',
-          image: null
+          image: null,
+          teachingStaff: '', // Reset new field
+          designation: ''    // Reset new field
         });
       } else {
         const data = await response.json();
@@ -85,13 +91,51 @@ const CreateFacultyForm = () => {
           ></textarea>
         </div>
         <div className="mb-4">
-          <label htmlFor="image" className="block text-gray-700 font-bold mb-2">Image</label>
+          <label htmlFor="image" className="block text-gray-700 font-bold mb-2">CV</label>
           <input
             type="file"
             id="image"
             name="image"
             onChange={handleChange}
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Teaching Staff</label>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="teachingYes"
+              name="teachingStaff"
+              value="yes"
+              checked={formData.teachingStaff === 'yes'}
+              onChange={handleChange}
+              className="mr-2 leading-tight"
+            />
+            <label htmlFor="teachingYes" className="mr-4">Yes</label>
+            <input
+              type="radio"
+              id="teachingNo"
+              name="teachingStaff"
+              value="no"
+              checked={formData.teachingStaff === 'no'}
+              onChange={handleChange}
+              className="mr-2 leading-tight"
+            />
+            <label htmlFor="teachingNo">No</label>
+          </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="designation" className="block text-gray-700 font-bold mb-2">Designation</label>
+          <input
+            type="text"
+            id="designation"
+            name="designation"
+            value={formData.designation}
+            onChange={handleChange}
+            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Enter designation"
             required
           />
         </div>
